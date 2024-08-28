@@ -3,16 +3,26 @@
 namespace JovemProgramadorMVC.Controllers
 {
     public class AlunoController : Controller
+
     {
-        private readonly IAlunoRepositorio _alunoRepositorio;
+        private readonly IAlunoRepositorio _alunorepositorio;
+
         public AlunoController(IAlunoRepositorio alunoRepositorio)
         {
-                _alunoRepositorio = alunoRepositorio;
+            _alunorepositorio = alunoRepositorio;
         }
         public IActionResult Index()
         {
-            var aluno = _alunoRepositorio.BuscarAlunos();
+            var aluno = _alunorepositorio.BuscarAlunos();
+            return View(aluno);
+        }
+
+        public IActionResult AdicionarAluno()
+        {
             return View();
         }
     }
+
+
+
 }
