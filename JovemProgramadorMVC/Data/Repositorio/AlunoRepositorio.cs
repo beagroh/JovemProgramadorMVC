@@ -16,5 +16,12 @@ public class AlunoRepositorio : IAlunoRepositorio
     {
         return _bancoContexto.Aluno.ToList();
     }
+
+        public void InserirAluno(Aluno aluno)
+        {
+            _bancoContexto.Aluno.Add(aluno);
+            _bancoContexto.SaveChanges();
+        }
 }
+
 }
