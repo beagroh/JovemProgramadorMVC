@@ -13,13 +13,20 @@
 
         {
             
-           foreach (var Aluno in Model)
+           foreach (Aluno aluno in Model)
             {
                 <tr>
-                    <td>@Aluno.Matricula </td>
-                    <td>@Aluno.Nome </td>
-                    <td>@Aluno.Cpf </td>
+                    <td>@aluno.Matricula </td>
+                    <td>@aluno.Nome </td>
+                    <td>@aluno.Cpf </td>
+
+                    <td>
+                        <div class="d-grid gap-2 d-md-block">
+                            <a type="submit" class="btn btn-primary" role="button" asp-controller="Aluno" asp-action="Editar" asp-route-id="@aluno.Id">Editar</a>
+                        </div>
+                    </td>
                 </tr>
+            
             }
         }
     

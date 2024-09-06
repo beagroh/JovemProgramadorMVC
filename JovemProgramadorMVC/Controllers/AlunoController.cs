@@ -1,20 +1,21 @@
 ﻿using JovemProgramadorMVC.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.Reflection.Metadata.Ecma335;
 
 namespace JovemProgramadorMVC.Controllers
 {
     public class AlunoController : Controller
 
     {
-        private readonly IAlunoRepositorio _alunorepositorio;
+        private readonly IAlunoRepositorio _alunoRepositorio;
 
         public AlunoController(IAlunoRepositorio alunoRepositorio)
         {
-            _alunorepositorio = alunoRepositorio;
+            _alunoRepositorio = alunoRepositorio;
         }
         public IActionResult Index()
         {
-            var aluno = _alunorepositorio.BuscarAlunos();
+            var aluno = _alunoRepositorio.BuscarAlunos();
             return View(aluno);
         }
 
@@ -27,7 +28,7 @@ namespace JovemProgramadorMVC.Controllers
         {
             try
             {
-                _alunorepositorio.InserirAluno(aluno);
+                _alunoRepositorio.InserirAluno(aluno);
             }
             catch (Exception)
             {
@@ -37,8 +38,21 @@ namespace JovemProgramadorMVC.Controllers
 
             return RedirectToAction("Index");
         }
-    }
 
+        public IActionResult Editar(int id)
+        {
+           var aluno = _alunoRepositorio.BuscarId(id);
+            return View(aluno);
+        }
 
-
+        public IActionResult EditarAluno(Aluno aluno)
+        {
+            _alunoRepositorio.EditarAluno(aluno);
+            return RedirectToAction("Index");
+        }
+    }   
 }
+
+
+
+
